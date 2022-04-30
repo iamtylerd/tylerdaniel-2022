@@ -1,0 +1,107 @@
+.home-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.home-left-container {
+  background: #FFFFFF;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: blur(4px);
+  &:hover {
+    filter: none;
+  }
+  .home-button-blog {
+    width: 224px;
+    height: 98px;
+    background: #39444A;
+    box-shadow: -3px 5px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    font-family: 'Jockey One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 70px;
+    /* identical to box height */
+    text-align: center;
+    color: #FFFFFF;
+    cursor: pointer;
+  }
+}
+
+.home-right-container {
+  background: #39444A;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: blur(4px);
+  &:hover {
+    filter: none;
+  }
+  .home-button-photo {
+    width: 224px;
+    height: 98px;
+    background: #FFFFFF;
+    box-shadow: -3px 5px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    font-family: 'Jockey One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 70px;
+    cursor: pointer;
+    /* identical to box height */
+
+    text-align: center;
+
+    color: #39444A;
+
+  }
+}
+
+.home-logo-container {
+  top: 50%;
+  left: 50%;
+  transform: translate(-48%, -50%);
+  position: fixed;
+  display: flex;
+  align-items: center;
+  z-index: 100;
+
+  .home-logo-main-letter-t {
+    font-family: 'Jockey One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 81.8182px;
+    line-height: 114px;
+
+    color: #39444A;
+  }
+
+  .home-logo-main-letter-d {
+    font-family: 'Jockey One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 81.8182px;
+    line-height: 114px;
+
+    color: #FFFFFF;
+  }
+
+  .home-logo-split-letter {
+    font-family: 'Jockey One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 23.1579px;
+    line-height: 32px;
+
+    color: #39444A;
+
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+}

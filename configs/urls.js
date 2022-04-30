@@ -1,0 +1,1 @@
+export const localWordpressUrl = 'http://localhost:10004/graphql';
