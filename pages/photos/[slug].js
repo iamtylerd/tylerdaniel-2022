@@ -1,26 +1,30 @@
 // import Image from 'next/image';
 import { useRouter } from 'next/dist/client/router';
+import Sidebar from '../../components/sidebar';
 import { localWordpressUrl } from '../../configs/urls';
 // to fix local import for dynamic file
 // import '../../styles/slug.scss';
 
 export default function Post(props) {
-  const { post } = props;
+  const { post, posts } = props;
   const router = useRouter();
   return (
-    <div>
-      <span className="post-button--back" id="post-top-anchor" onClick={() => router.back()}>back</span>
+    <div className="container" >
+      <Sidebar location="photos" posts={posts} />
       <div className="post-container">
-        <h1>{post.title}</h1>
-        {/* {post.featuredImage && <Image width="640" height="426" src={post.featuredImage?.node.sourceUrl} alt="" />} */}
-        <article className="post-article" dangerouslySetInnerHTML={{__html: post.content}} />
+        <span className="post-button--back" id="post-top-anchor" onClick={() => router.back()}>back</span>
+          <div className="post-div">
+          <h1>{post.title}</h1>
+          <article className="post-article" dangerouslySetInnerHTML={{__html: post.content}} />
+          </div>
+        <span className="post-go-up" onClick={() => window.scrollTo(0, 0)}>☝️</span>
       </div>
-      <span className="post-go-up" onClick={() => window.scrollTo(0, 0)}>☝️</span>
     </div>
   )
 }
 
 export async function getStaticProps(context) {
+
   const res = await fetch(localWordpressUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -46,10 +50,31 @@ export async function getStaticProps(context) {
     })
   });
 
+  const resSidebar = await fetch(localWordpressUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      query: `
+        query AllPostsQuery {
+          posts(where: {categoryName: "photos"}) {
+            nodes {
+              slug
+              content
+              title
+            }
+          }
+        }
+      `,
+    })
+  });
+
   const json = await res.json();
+
+  const resSidebarJson = await resSidebar.json();
   return {
     props: {
       post: json.data.post,
+      posts: resSidebarJson.data.posts,
     }
   };
 }

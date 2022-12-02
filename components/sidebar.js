@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 export default function Sidebar(props) {
   const { location, posts } = props;
+  const linkToCategory = location === "blog" ? "photos" : "blog"
   return (
     <div className={styles.container}>
         <Link href="/">
@@ -19,7 +20,7 @@ export default function Sidebar(props) {
             posts.nodes.map((post) => {
               return (
                 <li className={styles["post-link"]} key={post.slug}>
-                  <Link href={`/posts/${post.slug}`}>{post.title}</Link>
+                  <Link href={`/${location}/${post.slug}`}>{post.title}</Link>
                 </li>
               )
             })
@@ -28,9 +29,9 @@ export default function Sidebar(props) {
       </div>
       <div className={styles["footer-container"]}>
           <div className={styles["footer-links-container"]}>
-            <Link href="/photos">photos</Link>
-            <Link href="/about">about</Link>
-            <Link href="/contact">contact</Link>
+            <Link href={`/${linkToCategory}`}>{linkToCategory}</Link>
+            {location === "about" ? <Link href="/photos">photos</Link> : <Link href="/about">about</Link>}
+            {location === "contact" ? <Link href="/photos">photos</Link> : <Link href="/contact">contact</Link>}
           </div>
       </div>
     </div>

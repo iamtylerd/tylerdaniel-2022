@@ -15,7 +15,7 @@ export default function Blog(props) {
             posts.nodes.map((post) => {
               return (
                 <li key={post.slug}>
-                  <Link href={`/posts/${post.slug}`}>{post.title}</Link>
+                  <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                 </li>
               )
             })
